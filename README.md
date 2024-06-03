@@ -1,2 +1,0 @@
-# minist-project
-minist homework
