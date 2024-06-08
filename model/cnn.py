@@ -25,11 +25,11 @@ class CNN(nn.Module):
         self.fc1 = nn.LazyLinear(out_features=128)
         self.fc2 = nn.LazyLinear(out_features=output_size)
 
-    def forward(self, x):
-        x = self.cnnBlock1(x)
-        x = self.cnnBlock2(x)
-        x = self.cnnBlock3(x)
-        x = x.reshape(x.shape[0], -1)
-        x = F.relu(self.fc1(x)) 
-        x = self.fc2(x)
-        return x
+        def forward(self, x):
+            x = self.cnnBlock1(x)
+            x = self.cnnBlock2(x)
+            x = self.cnnBlock3(x)
+            x = x.reshape(x.shape[0], -1)
+            x = F.relu(self.fc1(x)) 
+            x = self.fc2(x)
+            return x
