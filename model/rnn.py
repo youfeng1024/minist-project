@@ -11,7 +11,7 @@ class RNN(nn.Module):
         self.hidden_size = hidden_size
         self.num_layers = num_layers     
         # 定义双层 RNN 层
-        self.rnn = nn.RNN(self.seq_len, self.hidden_size, num_layers, 
+        self.rnn = nn.GRU(self.seq_len, self.hidden_size, num_layers, 
                           dropout= 0.1 , bidirectional = True ,batch_first=True)    
         # 定义输出层
         self.fc = nn.Linear(2 * hidden_size, output_size)
