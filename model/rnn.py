@@ -3,11 +3,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class RNN(nn.Module):
-    def __init__(self, seq_len : int, seq_d : int, output_size : int, 
+    def __init__(self, seq_len : int, output_size : int, 
                  hidden_size: int, num_layers: int):
         super(RNN, self).__init__()
         self.seq_len = seq_len
-        self.seq_d = seq_d
         self.hidden_size = hidden_size
         self.num_layers = num_layers     
         # 定义双层 RNN 层
@@ -17,7 +16,7 @@ class RNN(nn.Module):
         self.fc = nn.Linear(2 * hidden_size, output_size)
     
     def forward(self, x):
-        x = x.permute(0, 2, 3, 1).reshape(-1, self.seq_len, self.seq_d)
+        x = x.permute(0, 2, 3, 1).reshape(x.shape[0], self.seq_len, -1)
         out, _ = self.rnn(x, None)   
         # 取最后一个时间步的输出
         out = out[:, -1, :]
