@@ -11,13 +11,7 @@ class CNN(nn.Module):
             nn.MaxPool2d(kernel_size=2, stride=2),
         )
         self.cnnBlock2 = nn.Sequential(
-            nn.Conv2d(in_channels=32, out_channels=64, 
-                    kernel_size=3, stride=1, padding='same'),
-            nn.ReLU(),
-            nn.MaxPool2d(kernel_size=2, stride=2),
-        )
-        self.cnnBlock3 = nn.Sequential(
-            nn.Conv2d(in_channels=64, out_channels=128, 
+            nn.Conv2d(in_channels=32, out_channels=128, 
                     kernel_size=3, stride=1, padding='same'),
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2),
@@ -28,7 +22,6 @@ class CNN(nn.Module):
         def forward(self, x):
             x = self.cnnBlock1(x)
             x = self.cnnBlock2(x)
-            x = self.cnnBlock3(x)
             x = x.reshape(x.shape[0], -1)
             x = F.relu(self.fc1(x)) 
             x = self.fc2(x)

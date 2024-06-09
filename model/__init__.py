@@ -1,6 +1,6 @@
 from .cnn import *
 from .rnn import *
 from .mlp import *
-from .rnn_attn import *
+# from .rnn_attn import *
 
-__all__ = ['CNN','RNN', ]
+__all__ = ['CNN','RNN', 'MLP']
